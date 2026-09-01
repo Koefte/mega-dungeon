@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b3t45kln2ff7u"]
+
+[ext_resource type="PackedScene" uid="uid://dn4knwuv8ykjp" path="res://assets/knife/untitled.glb" id="1_o0452"]
+[ext_resource type="Script" uid="uid://gqt4x83tdhgo" path="res://scripts/knife_attack.gd" id="2_syuqf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nrjr0"]
+size = Vector3(0.34606934, 4.347229, 0.44430542)
+
+[node name="knife" unique_id=1679070659 instance=ExtResource("1_o0452")]
+
+[node name="StaticBody3D" type="Area3D" parent="." index="2" unique_id=941379492]
+script = ExtResource("2_syuqf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1737510139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024475098, 1.176117, 0.0096588135)
+shape = SubResource("BoxShape3D_nrjr0")

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cojq2ipukxfwh"]
+
+[ext_resource type="PackedScene" uid="uid://4ypqkns0nod0" path="res://assets/chamber/untitled.glb" id="1_ecgjq"]
+
+[node name="Chamber" unique_id=367107774 instance=ExtResource("1_ecgjq")]
