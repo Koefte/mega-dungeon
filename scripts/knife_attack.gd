@@ -5,10 +5,26 @@ extends Area3D
 
 var bodies_already_checked = []
 
+var current_anim = "hit"
+var is_enabled = true
+
+func _ready() -> void:
+	anim_player.animation_finished.connect(_on_animation_finished)
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hit":
+		get_tree().create_timer(0.1).timeout.connect(anim_player.play.bind("RESET"))
+
 func _process(delta: float) -> void:
+	if not is_enabled:
+		return
+		
+	if Input.is_action_just_pressed("hit"):
+		anim_player.play("hit")
 	
 	var colliding_bodies = get_overlapping_bodies()
-	if colliding_bodies.size() == 1 and colliding_bodies[0].name == "Player":
+	
+	if current_anim != anim_player.current_animation:
 		bodies_already_checked.clear()
 	
 	for colliding_body in colliding_bodies:

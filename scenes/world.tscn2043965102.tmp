@@ -151,9 +151,9 @@ environment = SubResource("Environment_k0juu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3205222, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=473975323]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.7044449, 0.49595687, -3.8323364)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.7044449, 0.4959569, -4.2302246)
 use_collision = true
-size = Vector3(11.703125, 0.96032715, 11.035889)
+size = Vector3(11.703125, 0.16455078, 11.035889)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2" unique_id=402450671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17274475, 0, 0.73246145)
@@ -181,6 +181,9 @@ libraries/ = SubResource("AnimationLibrary_i7141")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Head/Camera3D" parent_id_path=PackedInt32Array(666488838, 265705493) index="2" unique_id=365372035]
 libraries/ = SubResource("AnimationLibrary_7r4gi")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player" unique_id=12128937]
+target_position = Vector3(0, 1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1823475286]
 
