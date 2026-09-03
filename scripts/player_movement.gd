@@ -9,6 +9,8 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 enum State {CRAWLING,JUMPING,BEGIN_CRAWL,END_CRAWL,MOVING,IDLE}
 
+var is_tilted := false
+
 var player_state : State = State.IDLE
 
 @onready var head: Node3D = $Head
@@ -35,6 +37,8 @@ func is_ceiling_above() -> bool:
 	return not result.is_empty()
 
 func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "tilt_left":
+		rotation.z = deg_to_rad(13.4)
 	
 	if anim_name == "crawl": 
 		if player_state == State.END_CRAWL:
@@ -83,8 +87,31 @@ func _physics_process(delta: float) -> void:
 			anim_player.play("crawl")
 			player_state = State.BEGIN_CRAWL
 			
-	
 
+	
+	if head.active_weapon == 1:
+		if Input.is_action_just_pressed("tilt_left"):
+			if is_tilted:
+				var tween = create_tween()
+				tween.tween_property(head, "rotation:z", deg_to_rad(0.0), 0.5)
+				is_tilted = false
+			else:
+				var tween = create_tween()
+				tween.tween_property(head, "rotation:z", deg_to_rad(20.0), 0.5)
+				is_tilted = true
+
+		elif Input.is_action_just_pressed("tilt_right"):
+			if is_tilted:
+				var tween = create_tween()
+				tween.tween_property(head, "rotation:z", deg_to_rad(0.0), 0.5)
+				is_tilted = false
+			else:
+				var tween = create_tween()
+				tween.tween_property(head, "rotation:z", deg_to_rad(-20.0), 0.5)
+				is_tilted = true
+		
+	
+	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor() and _can_jump():
 		velocity.y = jump_velocity

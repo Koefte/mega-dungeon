@@ -13,6 +13,10 @@ func switch_weapon(i:int) -> void:
 	knife.visible = i == 0
 	knife.get_node("StaticBody3D").is_enabled = i == 0
 	active_weapon = i
+	if i == 0:
+		var tween = create_tween()
+		tween.tween_property(self, "rotation:z", deg_to_rad(0.0), 0.5)
+		
 
 	
 
